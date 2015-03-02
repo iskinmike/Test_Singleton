@@ -6,8 +6,6 @@
 
 //#include <stdlib.h>
 
-Singleton* Singleton::p_instance = 0;
-
 using namespace std;
 
 int main(){
