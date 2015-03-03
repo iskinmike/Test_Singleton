@@ -1,20 +1,20 @@
-
-// Singleton1.h
-class Singleton
+// Singleton1.h Синглтон Майерса
+class singleton
 {
-private:
-static Singleton * p_instance;
-// Конструкторы и оператор присваивания недоступны клиентам
-Singleton() {}
-Singleton(const Singleton&);
-Singleton& operator=(Singleton&);
 public:
-static Singleton * getInstance() {
-if (!p_instance)
-p_instance = new Singleton();
-return p_instance;
-}
+	static singleton* instance() {
+		static singleton inst;
+		return &inst;
+	}
+private: // Запрещаем
+	singleton() {}; // конструктор
+	~singleton() {}; // и деструктор
+
+	// необходимо также запретить копирование
+	singleton(singleton const&); 
+	singleton& operator= (singleton const&); 
 };
+
 extern "C" {
-__declspec(dllexport) Singleton* getFunctionModuleObject();
+	__declspec(dllexport) singleton* getFunctionModuleObject();
 }
