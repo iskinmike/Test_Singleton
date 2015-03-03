@@ -4,7 +4,7 @@ Simply a test for Singleton class.
 
 Сначала из файлов Singleton1.h и Singleton1.cpp собрать Dll Библиотеку.
 
-Я закинул ее в Windows System.
+Я закинул ее в Windows\System.
 
 Работал в Visual Studio 2013 Express
 
