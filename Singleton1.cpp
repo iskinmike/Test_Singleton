@@ -1,13 +1,9 @@
-#include "Singleton1.h"
 
+#include "Singleton1.h"
 #include <iostream>
 
-Singleton* Singleton::p_instance = 0;
-
-//using namespace std;
-
-__declspec(dllexport) Singleton *getFunctionModuleObject() {
-	Singleton *TempObj;
-	TempObj = Singleton::getInstance();
+__declspec(dllexport) singleton *getFunctionModuleObject() {
+	singleton *TempObj;
+	TempObj = singleton::instance();
 	return TempObj;
 };
