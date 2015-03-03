@@ -1,4 +1,3 @@
-
 #include "Singleton1.h"
 #include <iostream>
 
@@ -7,3 +6,4 @@ __declspec(dllexport) singleton *getFunctionModuleObject() {
 	TempObj = singleton::instance();
 	return TempObj;
 };
+
