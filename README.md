@@ -2,7 +2,7 @@
 
 Simply a test for Singleton class.
 
-Сначала из файлов Singleton1.h и Singleton1.cpp собрать Dll Библиотеку.
+Сначала из файлов Singleton1.h и Singleton1.cpp собрать Dll Библиотеку. В ней реализован Синглтон Майерса.
 
 Я закинул ее в Windows\System.
 
