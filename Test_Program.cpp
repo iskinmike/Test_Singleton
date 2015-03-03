@@ -12,7 +12,7 @@ int main(){
 
 	std::cout << "Works!!!" << std::endl;
 
-	Singleton *FirstObject;
+	singleton *FirstObject;
 
 	FirstObject = getFunctionModuleObject();
 
