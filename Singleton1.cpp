@@ -1,3 +1,4 @@
+
 #include "Singleton1.h"
 
 #include <iostream>
@@ -9,6 +10,8 @@ PCRITICAL_SECTION pcs;
 //pcs = &g_cs;
 
 //int InitializeCriticalSection(pcs);
+int g_var;
+
 __declspec(dllexport) singleton *getFunctionModuleObject() {
 	//InitializeCriticalSection(&g_cs);
 	singleton *TempObj;
@@ -32,4 +35,8 @@ __declspec(dllexport) void initCS() {
 	std::cout << "Init Critical Section " << &g_cs << std::endl;
 	InitializeCriticalSection(&g_cs);
 	std::cout << "Init Critical Section" << std::endl;
+};
+
+__declspec(dllexport) int *getG_Var() {
+	return &g_var;
 };
