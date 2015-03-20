@@ -1,13 +1,35 @@
 #include "Singleton1.h"
 
 #include <iostream>
+#include <Windows.h>
 
-Singleton* Singleton::p_instance = 0;
-
+CRITICAL_SECTION g_cs;
 //using namespace std;
+PCRITICAL_SECTION pcs;
+//pcs = &g_cs;
 
-__declspec(dllexport) Singleton *getFunctionModuleObject() {
-	Singleton *TempObj;
-	TempObj = Singleton::getInstance();
-	return TempObj;
+//int InitializeCriticalSection(pcs);
+__declspec(dllexport) singleton *getFunctionModuleObject() {
+	//InitializeCriticalSection(&g_cs);
+	singleton *TempObj;
+	TempObj = singleton::instance();
+	return TempObj;	
+};
+
+__declspec(dllexport) void getIntoCS() {
+	std::cout << "Enter Critical Section "  << std::endl;
+	EnterCriticalSection(&g_cs);
+	std::cout << "Enter Critical Section" << std::endl ;
+};
+
+__declspec(dllexport) void getOutCS() {
+	std::cout << "Leave Critical Section" << std::endl;
+	LeaveCriticalSection(&g_cs);
+	std::cout << "Leave Critical Section" << std::endl;
+};
+
+__declspec(dllexport) void initCS() {
+	std::cout << "Init Critical Section " << &g_cs << std::endl;
+	InitializeCriticalSection(&g_cs);
+	std::cout << "Init Critical Section" << std::endl;
 };
