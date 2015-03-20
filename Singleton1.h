@@ -54,3 +54,6 @@ extern "C" {
 
 	__declspec(dllexport) void initCS();
 }
+extern "C" {
+	__declspec(dllexport) int *getG_Var();
+}
