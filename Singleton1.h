@@ -1,20 +1,56 @@
-
 // Singleton1.h
-class Singleton
+class singleton
 {
-private:
-static Singleton * p_instance;
-// Конструкторы и оператор присваивания недоступны клиентам
-Singleton() {}
-Singleton(const Singleton&);
-Singleton& operator=(Singleton&);
 public:
-static Singleton * getInstance() {
-if (!p_instance)
-p_instance = new Singleton();
-return p_instance;
-}
+	static singleton* instance() {
+		static singleton inst;
+		return &inst;
+	};
+	//CRITICAL_SECTION c_cs;
+	int sinVar;
+	int *psv=&sinVar;
+
+	void initSinVar(){
+		sinVar = 0;
+	};
+	void increaseSinVar(){
+		sinVar++;
+	};
+
+private: // Запрещаем
+	singleton() {
+		//sinVar = 0;
+		//psv = &sinVar;
+	}; // конструктор
+	~singleton() {}; // и деструктор
+
+	// необходимо также запретить копирование
+	singleton(singleton const&); // реализация не нужна
+	singleton& operator= (singleton const&);  // и тут
+
 };
+/*
+
 extern "C" {
-__declspec(dllexport) Singleton* getFunctionModuleObject();
+	__declspec(dllexport) singleton* getFunctionModuleObject();
+	__declspec(dllexport) void getIntoCS();
+	__declspec(dllexport) void getOutCS();
+}
+
+*/
+
+extern "C" {
+	__declspec(dllexport) singleton* getFunctionModuleObject();
+}
+extern "C" {
+
+	__declspec(dllexport) void getIntoCS();
+}
+extern "C" {
+
+	__declspec(dllexport) void getOutCS();
+}
+extern "C" {
+
+	__declspec(dllexport) void initCS();
 }
